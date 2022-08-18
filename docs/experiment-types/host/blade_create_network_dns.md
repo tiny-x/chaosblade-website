@@ -6,27 +6,29 @@ id: blade create network dns
 
 篡改 dns 域名解析实验场景
 
-## 介绍
+## 场景介绍
 此实验会修改本地的 hosts，篡改域名地址映射。
 
 网络丢包场景主要验证域名解析异常的情况下，系统的自我容错能力。
 
 ## 参数
-```text
---domain string    域名 (必要参数)
---ip string        映射的 ip (必要参数)
---timeout string   设定运行时长，单位是秒，通用参数
-```
+|  参数名 |  说明 | 类型 | 值                |
+|  ----  | ---- | ---- |------------------|
+| `domain` | 域名 (必要参数) | string | 例如 www.baidu.com |
+| `ip` | 映射的 ip (必要参数) | string | 115.10.121.10    |
 
 ## 案例
-```text
-# www.baidu.com 域名不可访问
+
+### www.baidu.com 域名不可访问
+````bash
 blade create network dns --domain www.baidu.com --ip 10.0.0.0
+````
 
+````
 {"code":200,"success":true,"result":"9e7a168079c68fad"}
+````
 
-# 使用 ping www.baidu.com 来验证，会发现访问不通。
-```
+使用 ping www.baidu.com 来验证，会发现访问不通。
 
 ## 实现原理
 修改 /etc/hosts
